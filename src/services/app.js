@@ -10,6 +10,20 @@ const form = document.querySelector('form');
 const descendingSortBtn = document.getElementById('descending-sort');
 const ascendingSortBtn = document.getElementById('ascending-sort');
 const closeButtons = document.querySelectorAll('.closeBtn');
+const themeBtn = document.querySelector('.theme-button');
+const modal = document.querySelector('.modal-content');
+const toDoTitle = document.getElementById('toDo-title');
+const completedTitle = document.getElementById('completed-title');
+
+function changeTheme() {
+  body.classList.toggle('dark');
+  navbar.classList.toggle('bg-light');
+  navbar.classList.toggle('dark-navbar');
+  toDoList.classList.toggle('dark-text');
+  completedList.classList.toggle('dark-text');
+  modal.classList.toggle('dark');
+  themeBtn.classList.toggle('theme-button-dark');
+}
 
 function clearTaskLists() {
   while (toDoList.firstChild) {
