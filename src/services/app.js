@@ -3,6 +3,8 @@ import { getDate } from "./getDate.js";
 import { sortAscending } from "./sortAscending.js";
 import { sortDescending } from "./sortDescending.js";
 
+const body = document.querySelector('body');
+const navbar = document.querySelector('.navbar');
 const toDoList = document.getElementById('currentTasks');
 const completedList = document.getElementById('completedTasks');
 const taskTemplate = document.getElementById('task-template');
