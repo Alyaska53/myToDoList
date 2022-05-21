@@ -157,6 +157,8 @@ form.addBtn.addEventListener('click', () => {
 
 closeButtons.forEach(el => el.addEventListener('click', clearForm));
 
+themeBtn.addEventListener('click', changeTheme);
+
 // ============= page launch ============= //
 
 renderTasksList();
