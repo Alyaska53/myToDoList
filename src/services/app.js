@@ -11,9 +11,12 @@ const taskTemplate = document.getElementById('task-template');
 const form = document.querySelector('form');
 const descendingSortBtn = document.getElementById('descending-sort');
 const ascendingSortBtn = document.getElementById('ascending-sort');
-const closeButtons = document.querySelectorAll('.closeBtn');
+const closeBtnTop = document.querySelector('.closeBtn-top');
+const closeBtnBottom = document.querySelector('.closeBtn-bottom');
 const themeBtn = document.querySelector('.theme-button');
-const modal = document.querySelector('.modal-content');
+const modal = document.getElementById('exampleModal');
+const modalWindow = document.querySelector('.modal-content');
+const modalTitle = document.getElementById('exampleModalLabel');
 const toDoTitle = document.getElementById('toDo-title');
 const completedTitle = document.getElementById('completed-title');
 
@@ -23,7 +26,7 @@ function changeTheme() {
   navbar.classList.toggle('dark-navbar');
   toDoList.classList.toggle('dark-text');
   completedList.classList.toggle('dark-text');
-  modal.classList.toggle('dark');
+  modalWindow.classList.toggle('dark');
   themeBtn.classList.toggle('theme-button-dark');
 }
 
@@ -49,9 +52,14 @@ function countTasksNumber() {
   completedTitle.textContent = `Completed (${completedCounter})`;
 }
 
-function clearForm() {
-  form.reset();
-  form.addBtn.textContent = 'Add task';
+function clearForm(event) {
+  let target = event.target;
+
+  if (target === modal || target === closeBtnTop || target === closeBtnBottom) {
+    form.reset();
+    form.addBtn.textContent = 'Add task';
+    modalTitle.textContent = 'Add task';
+  }
 }
 
 function completeTask(id) {
@@ -95,6 +103,7 @@ function editTask(task) {
   form.color.value = task.color;
   form.elements.gridRadios.value = task.priority;
   form.addBtn.textContent = 'Save changes';
+  modalTitle.textContent = 'Edit task';
   tasks.selectedTask = task.id;
 
   localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -169,7 +178,7 @@ form.addBtn.addEventListener('click', () => {
   (tasks.selectedTask) ? saveChange() : addTask();
 });
 
-closeButtons.forEach(el => el.addEventListener('click', clearForm));
+modal.addEventListener('click', (event) => clearForm(event));
 
 themeBtn.addEventListener('click', changeTheme);
 
