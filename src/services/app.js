@@ -145,9 +145,8 @@ function renderTasksList() {
       editBtn.remove();
       completedList.prepend(clone);
     } else {
-      toDoList.prepend(clone);
-
       editBtn.addEventListener('click', () => editTask(element));
+      toDoList.prepend(clone);
     }
   });
 }
