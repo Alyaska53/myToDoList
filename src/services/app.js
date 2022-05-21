@@ -72,17 +72,6 @@ function deleteTask(id) {
   renderTasksList();
 }
 
-function editTask(task) {
-  form.inputTitle.value = task.title;
-  form.inputText.value = task.text;
-  form.color.value = task.color;
-  form.elements.gridRadios.value = task.priority;
-  form.addBtn.textContent = 'Save changes';
-  tasks.selectedTask = task.id;
-
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-}
-
 function addTask() {
   let task = {
     id: Date.now(),
@@ -96,6 +85,17 @@ function addTask() {
   tasks.list.push(task);
   localStorage.setItem('tasks', JSON.stringify(tasks));
   renderTasksList();
+}
+
+function editTask(task) {
+  form.inputTitle.value = task.title;
+  form.inputText.value = task.text;
+  form.color.value = task.color;
+  form.elements.gridRadios.value = task.priority;
+  form.addBtn.textContent = 'Save changes';
+  tasks.selectedTask = task.id;
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function saveChange() {
