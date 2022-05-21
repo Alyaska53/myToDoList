@@ -35,6 +35,18 @@ function clearTaskLists() {
   }
 }
 
+function countTasksNumber() {
+  let toDoCounter = 0;
+  let completedCounter = 0;
+
+  tasks.list.forEach(el => {
+    el.isComplete ? completedCounter++ : toDoCounter++;
+  });
+
+  toDoTitle.textContent = `ToDo (${toDoCounter})`;
+  completedTitle.textContent = `Completed (${completedCounter})`;
+}
+
 function clearForm() {
   form.reset();
   form.addBtn.textContent = 'Add task';
@@ -103,6 +115,7 @@ function saveChange() {
 
 function renderTasksList() {
   clearTaskLists();
+  countTasksNumber();
 
   tasks.list.forEach(element => {
     const clone = taskTemplate.content.cloneNode(true);
